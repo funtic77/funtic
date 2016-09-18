@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+    <% include includes/head.ejs %>
+
+</head>
+<body>
+
+<div id="wrapper">
+
+    <div id="header">
+
+        <% include includes/header.ejs %>
+
+    </div>
+
+    <div id="container">
+
+        <div class="main_h"><h1>Фильмы онлайн в хорошем качестве</h1></div>
+
+        <div class="main-sliders-top1" style="background: #333; height: 80px;">
+            <div class="main-sliders-top-title">
+
+                <div style="float: left;position: relative;bottom: 3px;"><div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="small" data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki,moimir,gplus" data-yashareTheme="counter"></div> </div>
+
+                <span style="float: right;margin: 18px 12px 0 8px;"><a class="main_btn_podborka" style="position: static !important;" href="<%- page.protocol %><%- page.domain %>/<%- page.urls.collection %>">Лучшие подборки</a></span>
+                <span style="float: right;margin: 18px 5px 0 0;"><a class="main_btn_hd" style="position: static !important;" href="<%- page.protocol %><%- page.domain %>/<%- page.urls.type %>/<%- page.urls.types.movie %>">Все фильмы HD720</a></span>
+
+            </div>
+        </div>
+
+        <% if (typeof movies == 'object') { for (var type in movies) { if (movies.hasOwnProperty(type)) { %>
+
+        <% if (movies[type].length) { %>
+
+        <% movies[type].forEach(function (category) { %>
+
+        <div class="main-sliders-top1">
+            <div class="main-sliders-top-title">
+
+                <%- category.name %>
+
+            </div>
+        </div>
+
+        <div class="sliders-bg1">
+            <div class="main-sliders">
+                <div class="movie-slider" style="display: none;">
+
+                    <% if (category.movies.length) { %>
+
+                    <% category.movies.forEach(function (movie) { %>
+
+                    <div class="item">
+                        <div class="main-sliders-ico">
+                            <span class="main-sliders-mob"></span>
+                            <span class="main-sliders-720p"></span>
+                        </div>
+                        <div class="main-sliders-shadow">
+                            <div class="main-sliders-img">
+                                    <span class="main-sliders-info">
+                                        <span class="main-sliders-info1">
+                                            <span class="main-sliders-popup">
+                                                <span>
+                                                    <%- movie.premiere %>
+                                                </span>
+                                                <em>
+                                                    <%- movie.genres %>
+                                                </em>
+                                                <i>
+                                                    <%- movie.description.substr(0, 200) %>...
+                                                </i>
+                                            </span>
+                                        </span>
+                                    </span>
+                                    <span class="main-sliders-bg">
+                                        <a href="<%- movie.url %>" class="main-sliders-play">
+                                            <svg viewBox="83.1 54.3 61.5 73.1">
+                                                <polygon points="83.1,54.3 83.1,127.4 144.7,90.9"></polygon>
+                                            </svg>
+                                        </a>
+                                    </span>
+                                <img src="<%- movie.poster %>" alt="<%- movie.title_ru %> (<%- movie.year %>)" style="height: 260px; width: 180px;">
+                            </div>
+                        </div>
+                        <div class="main-sliders-title">
+                            <a href="<%- movie.url %>">
+                                <%- movie.title_ru %> (<%- movie.year %>)
+                            </a>
+                        </div>
+                    </div>
+
+                    <% }); %>
+
+                    <% } %>
+
+                </div>
+            </div>
+        </div>
+
+        <% }); %>
+
+        <% } %>
+
+        <% } } } %>
+
+    </div>
+
+    <div class="clear"></div>
+    <div id="spacer"></div>
+
+</div>
+
+<div id="footer">
+
+    <% include includes/footer.ejs %>
+
+</div>
+
+</body>
+</html>
